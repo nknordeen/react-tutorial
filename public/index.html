@@ -13,10 +13,16 @@
   </head>
   <body>
     <div id="content"></div>
-    <script type="text/babel" src="scripts/example.js"></script>
-    <script type="text/babel">
-      // To get started with this tutorial running your own code, simply remove
-      // the script tag loading scripts/example.js and start writing code here.
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.18.4/system.js"></script>
+    <script>
+      // set our baseURL reference path
+      System.config({
+        baseURL: '/scripts'
+      });
+
+      // loads /app/main.js
+      System.import('app.js');
     </script>
+    
   </body>
 </html>
