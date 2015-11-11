@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var babel = require('gulp-babel');
+var nodemon = require('gulp-nodemon');
 
 var PATHS = {
 	js: 'public/**/*.js',
@@ -25,11 +26,14 @@ gulp.task('html', function () {
 });
 
 gulp.task('serve', ['js', 'html'], function() {
+	nodemon({
+		script:'server.js'
+	})
 	browserSync.init({
 		server: {
 			baseDir: './dist'
 		}
-	})
+	});
 	gulp.watch(PATHS.html, ['html-watch']);
 	gulp.watch(PATHS.js, ['js-watch']);
 });

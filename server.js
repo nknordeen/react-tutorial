@@ -18,11 +18,19 @@ var app = express();
 
 var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 
-app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.set('port', (process.env.PORT || 7777));
+
+app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(function (req, res, next) {
+  console.log(req);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/api/comments', function(req, res) {
   fs.readFile(COMMENTS_FILE, function(err, data) {
@@ -32,6 +40,7 @@ app.get('/api/comments', function(req, res) {
 });
 
 app.post('/api/comments', function(req, res) {
+  console.log("CALLED");
   fs.readFile(COMMENTS_FILE, function(err, data) {
     var comments = JSON.parse(data);
     comments.push(req.body);
