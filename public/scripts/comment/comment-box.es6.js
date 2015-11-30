@@ -1,5 +1,6 @@
-import CommentList from 'comment/comment-list.js';
-import CommentForm from 'comment/comment-form.js';
+import CommentList from './comment-list.es6.js';
+import CommentForm from './comment-form.es6.js';
+import React from 'react';
 
 export default class CommentBox extends React.Component {
 
@@ -8,6 +9,7 @@ export default class CommentBox extends React.Component {
 		this.state = {
 			data: []
 		};
+		console.log('comment box');
 	}
 
 	loadCommentsFromServer() {

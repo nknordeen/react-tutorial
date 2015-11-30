@@ -1,4 +1,6 @@
-import Comment from 'comment/comment.js'
+import Comment from './comment.es6.js'
+import React from 'react';
+
 export default class CommentList extends React.Component {
 	render() {
 		var commentNodes = this.props.data.map(function (comment) {
