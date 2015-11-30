@@ -1,6 +1,7 @@
 import CommentList from './comment-list.es6.js';
 import CommentForm from './comment-form.es6.js';
 import React from 'react';
+import $ from 'jquery';
 
 export default class CommentBox extends React.Component {
 
@@ -9,10 +10,11 @@ export default class CommentBox extends React.Component {
 		this.state = {
 			data: []
 		};
-		console.log('comment box');
+		this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
+		this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
 	}
 
-	loadCommentsFromServer() {
+	loadCommentsFromServer () {
 	    $.ajax({
 			url: `http://localhost:7777${this.props.url}`,
 			dataType: 'json',
